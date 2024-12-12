@@ -298,8 +298,8 @@ function orderAlphabetically(str) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
@@ -316,8 +316,18 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let result = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    for (let k = 0; k < vowels.length; k += 1) {
+      if (str[i] === vowels[k]) {
+        result += 1;
+        break;
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -333,8 +343,9 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const formattedStr = str.toLowerCase().replaceAll(/[.,?!\s]/g, '');
+  return formattedStr === formattedStr.split('').reverse().join('');
 }
 
 /**
@@ -349,8 +360,8 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  return sentence.split(' ').sort((a, b) => b.length - a.length)[0];
 }
 
 /**
@@ -363,8 +374,15 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  if (str === '' || str === ' ') {
+    return str;
+  }
+  const words = str.split(' ');
+  for (let i = 0; i < words.length; i += 1) {
+    words[i] = words[i].split('').reverse().join('');
+  }
+  return words.join(' ');
 }
 
 /**
